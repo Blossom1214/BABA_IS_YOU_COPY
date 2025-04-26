@@ -1,24 +1,21 @@
 #pragma once
-#include "Position.h"
-#include "ObjectType.h"
 #include "TileType.h"
-#include <vector>
+#include "Position.h"
 
-class Object;
-class TileBase //완전무결한 타일의 최상위 추상화된 클래스임... 이제 쓸려면 오버라이드해서쓰라는거야
+class TileBase //추상화 클래스 다시한번 리펙터링중
 {
+
 public:
-    virtual ~TileBase() {}
-    virtual void AddObject(Object* obj) = 0;
-    virtual void RemoveObject(Object* obj) = 0;
-    virtual const std::vector<Object*>& GetObjects() const = 0;
-    virtual bool HasObjectType(ObjectType type) const = 0;
-
-    virtual void SetType(TileType type) = 0;
-    virtual TileType GetType() const = 0;
-
-    virtual void SetObject_prev(ObjectType object) = 0;
-    virtual ObjectType GetObject_prev() const = 0;
-
+    virtual ~TileBase() = default;
+    void SetPosition(const Position& pos) { _position = pos; }
+    const Position& GetPosition() const { return _position; }
+    virtual void SetType(TileType type) { _tileType = type; }
+    virtual TileType GetType() const { return _tileType; }
     virtual void Render() = 0;
+    virtual bool IsTextTile() const = 0;
+    virtual bool IsObjectTile() const = 0;
+protected:
+    Position _position;
+    TileType _tileType;
+
 };

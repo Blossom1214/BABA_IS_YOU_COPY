@@ -1,7 +1,49 @@
 #include "ObjectTile.h"
+#include "Object.h"
+#include <algorithm> 
 
-ObjectTile::ObjectTile()
-    : Tile() // 기본 타일 생성자 호출
+void ObjectTile::AddObject(Object* obj)
 {
-    // 특별한 추가 작업 없음
+    if (obj)
+    {
+        _objects.push_back(obj);
+    }
+}
+
+void ObjectTile::RemoveObject(Object* obj)
+{
+    if (!obj)
+        return;
+
+    auto it = std::find(_objects.begin(), _objects.end(), obj);
+    if (it != _objects.end())
+    {
+        _objects.erase(it);
+    }
+}
+
+const std::vector<Object*>& ObjectTile::GetObjects() const
+{
+    return _objects;
+}
+
+bool ObjectTile::HasObjectType(ObjectType type) const
+{
+    for (const auto& obj : _objects)
+    {
+        if (obj && obj->GetType() == type)
+            return true;
+    }
+    return false;
+}
+
+void ObjectTile::Render()
+{
+    for (const auto& obj : _objects)
+    {
+        if (obj)
+        {
+            obj->Render();
+        }
+    }
 }

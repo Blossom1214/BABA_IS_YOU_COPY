@@ -144,7 +144,6 @@
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="StateToTextTile.cpp" />
     <ClCompile Include="TextTile.cpp" />
-    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="VerbToTextTile.cpp" />
   </ItemGroup>
@@ -171,7 +170,6 @@
     <ClInclude Include="StateToTextTile.h" />
     <ClInclude Include="TextRole.h" />
     <ClInclude Include="TextTile.h" />
-    <ClInclude Include="Tile.h" />
     <ClInclude Include="TileBase.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TileType.h" />
