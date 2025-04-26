@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Core">
+      <UniqueIdentifier>{b79b318c-ce15-4de7-aea9-3cae194e4f63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\World">
+      <UniqueIdentifier>{59e2db4a-3ce2-4ae7-a4c8-c0acae4dfabd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Core.h">
+      <UniqueIdentifier>{8e983084-4880-4391-b16a-2240c1666ac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Map.h">
+      <UniqueIdentifier>{8ddb8cd8-8153-4463-a392-c674f0592659}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\World.h">
+      <UniqueIdentifier>{c838edf6-8c4c-4598-b009-21e120f7e4ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Stage.h">
+      <UniqueIdentifier>{3dc3072e-7303-4fbb-b4ab-d85ec06bb6bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Resource.h">
+      <UniqueIdentifier>{ea22ed72-536b-41f5-a515-ac67748d1a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Stage">
+      <UniqueIdentifier>{cda9c66b-5a23-454d-bf0c-32347b56cb7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Resource">
+      <UniqueIdentifier>{b1eb4db6-536c-4afa-a89a-4b66274b2df0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Map">
+      <UniqueIdentifier>{3b1dc461-8bbc-46a3-850b-04185bd4b8f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Object">
+      <UniqueIdentifier>{168f807f-ebac-4ce3-8a9e-e9194d9692f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Object.h">
+      <UniqueIdentifier>{5b540d62-531e-4ffa-84f8-1265b5998195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Stage.h\StageData">
+      <UniqueIdentifier>{50a0b8af-9254-4954-b417-0dd1641b844a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFlow.cpp">
+      <Filter>소스 파일\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveLoadManager.cpp">
+      <Filter>소스 파일\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="RuleManager.cpp">
+      <Filter>소스 파일\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>소스 파일\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionManager.cpp">
+      <Filter>소스 파일\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="StageManager.cpp">
+      <Filter>소스 파일\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Lobby.cpp">
+      <Filter>소스 파일\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>소스 파일\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>소스 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlManager.cpp">
+      <Filter>소스 파일\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="VerbToTextTile.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="StateToTextTile.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectToTextTile.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Grammer.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectTile.cpp">
+      <Filter>소스 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TextTile.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameFlow.h">
+      <Filter>헤더 파일\Core.h</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLoadManager.h">
+      <Filter>헤더 파일\Core.h</Filter>
+    </ClInclude>
+    <ClInclude Include="TileType.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+    <ClInclude Include="RuleManager.h">
+      <Filter>헤더 파일\Stage.h</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>헤더 파일\Core.h</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionManager.h">
+      <Filter>헤더 파일\Core.h</Filter>
+    </ClInclude>
+    <ClInclude Include="StageManager.h">
+      <Filter>헤더 파일\Core.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Lobby.h">
+      <Filter>헤더 파일\World.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>헤더 파일\Object.h</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectType.h">
+      <Filter>헤더 파일\Object.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>헤더 파일\Stage.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>헤더 파일\Stage.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>헤더 파일\Object.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Direction.h">
+      <Filter>헤더 파일\Object.h</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectRole.h">
+      <Filter>헤더 파일\Object.h</Filter>
+    </ClInclude>
+    <ClInclude Include="TileBase.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>헤더 파일\Object.h</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlManager.h">
+      <Filter>헤더 파일\Core.h</Filter>
+    </ClInclude>
+    <ClInclude Include="VerbToTextTile.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+    <ClInclude Include="StateToTextTile.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectToTextTile.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Grammer.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectTile.h">
+      <Filter>헤더 파일\Object.h</Filter>
+    </ClInclude>
+    <ClInclude Include="TextTile.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
