@@ -8,7 +8,7 @@
 //	tile->
 //}
 
-bool VerbToTextTile::CheckVerb()
+VerbToTextTile::VerbToTextTile(TextRole role) : TextTile(role)
 {
-	
+
 }

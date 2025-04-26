@@ -29,12 +29,6 @@ bool Object::HasRule(const std::string& rule) const
 {
 	return _rules.find(rule) != _rules.end();
 }
-
-bool Object::IsText() const
-{
-	return ObjectRole(_type) == ObjectRole::TEXT;
-}
-
 bool Object::IsNoun() const
 {
 	return ObjectRole(_type) == ObjectRole::NOUN;

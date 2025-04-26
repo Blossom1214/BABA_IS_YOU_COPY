@@ -18,7 +18,10 @@ public:
 	void RemoveRule(const std::string& rule);//룰빼기
 
 	bool HasRule(const std::string& rule) const;//룰테이블에 해당룰이있는지 체크
-
+	
+	bool IsNoun() const;
+	bool IsVerb() const;
+	bool IsProperty() const;
 private:
 
 	ObjectType _type;

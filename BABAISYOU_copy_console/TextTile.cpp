@@ -1,10 +1,10 @@
 #include "TextTile.h"
-TextTile::TextTile(): Tile()
+
+TextTile::TextTile(TextRole role) :_textRole(role)
 {
- 
 }
 
-bool TextTile::HasPushRule() const
+TextRole TextTile::GetTextRole() const
 {
-    return true;
+	return _textRole;
 }

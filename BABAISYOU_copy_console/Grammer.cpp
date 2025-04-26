@@ -4,29 +4,72 @@
 #include "VerbToTextTile.h"
 #include "StateToTextTile.h"
 #include "TileMap.h"
-bool Grammer::IsText(Tile* tile)
+bool Grammer::IsText(TileBase* tile)
 {
-	return ObjectRole(_type) == ObjectRole::TEXT;
+	return dynamic_cast<TextTile*>(tile) != nullptr;
 }
 
-bool Grammer::IsNoun(Tile* tile)
+bool Grammer::IsNoun(TileBase* tile)
 {
-	return ObjectRole(_type) == ObjectRole::NOUN;
+    TextTile* textTile = dynamic_cast<TextTile*>(tile); //다운캐스팅
+    if (!textTile) 
+    {
+        return false;
+    }
+    switch (textTile->GetTextRole())
+    {
+    case TextRole::BABA:
+    case TextRole::ROCK:
+    case TextRole::WALL:
+    case TextRole::FLAG:
+        return true;
+    default:
+        return false;
+    }
 }
 
-bool Grammer::IsVerb(Tile* tile)
+bool Grammer::IsVerb(TileBase* tile)
 {
-	return ObjectRole(_type) == ObjectRole::VERB;
+    TextTile* textTile = dynamic_cast<TextTile*>(tile); //다운캐스팅
+    if (!textTile)
+    {
+        return false;
+    }
+    switch (textTile->GetTextRole())
+    {
+    case TextRole::IS:
+        return true;
+    default:
+        return false;
+    }
 }
 
-bool Grammer::IsProperty(Tile* tile)
+bool Grammer::IsProperty(TileBase* tile)
 {
-	return ObjectRole(_type) == ObjectRole::PROPERTY;
+    TextTile* textTile = dynamic_cast<TextTile*>(tile); //다운캐스팅
+    if (!textTile)
+    {
+        return false;
+    }
+    switch (textTile->GetTextRole())
+    {
+    case TextRole::YOU:
+    case TextRole::PUSH:
+    case TextRole::STOP:
+    case TextRole::WIN:
+        return true;
+    default:
+        return false;
+    }
 }
 
 bool Grammer::CheckHorizontalText(TileMap* map, const Position& pos)
 {
-	return false;
+	TileBase*tile = map->GetTile(pos);
+	if (!IsText(tile))
+	{
+		return false;
+	}
 }
 
 bool Grammer::CheckVerticalText(TileMap* map, const Position& pos)

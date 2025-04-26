@@ -169,6 +169,7 @@
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="StateToTextTile.h" />
+    <ClInclude Include="TextRole.h" />
     <ClInclude Include="TextTile.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileBase.h" />

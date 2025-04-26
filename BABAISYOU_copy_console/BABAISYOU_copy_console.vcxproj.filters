@@ -194,5 +194,8 @@
     <ClInclude Include="TextTile.h">
       <Filter>헤더 파일\Map.h</Filter>
     </ClInclude>
+    <ClInclude Include="TextRole.h">
+      <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
