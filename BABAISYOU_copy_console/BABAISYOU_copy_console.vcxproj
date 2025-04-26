@@ -127,13 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BABAobj.cpp" />
     <ClCompile Include="ControlManager.cpp" />
     <ClCompile Include="GameFlow.cpp" />
     <ClCompile Include="Grammer.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Lobby.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjectTile.cpp" />
     <ClCompile Include="ObjectToTextTile.cpp" />
@@ -148,6 +148,7 @@
     <ClCompile Include="VerbToTextTile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BABAobj.h" />
     <ClInclude Include="ControlManager.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="GameFlow.h" />

@@ -52,6 +52,9 @@
     <Filter Include="헤더 파일\Stage.h\StageData">
       <UniqueIdentifier>{50a0b8af-9254-4954-b417-0dd1641b844a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Object\OBJ">
+      <UniqueIdentifier>{02a0831a-e3dd-4c96-af96-9badfd151ec3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -87,9 +90,6 @@
     <ClCompile Include="Stage.cpp">
       <Filter>소스 파일\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>소스 파일\Object</Filter>
-    </ClCompile>
     <ClCompile Include="ControlManager.cpp">
       <Filter>소스 파일\Core</Filter>
     </ClCompile>
@@ -110,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="TextTile.cpp">
       <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="BABAobj.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="TextRole.h">
       <Filter>헤더 파일\Map.h</Filter>
+    </ClInclude>
+    <ClInclude Include="BABAobj.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
