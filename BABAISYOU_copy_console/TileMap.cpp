@@ -1,78 +1,64 @@
 #include "TileMap.h"
 #include "TileBase.h"
-#include "ObjectType.h"
-#include "Position.h"
+#include "ObjectTile.h"
+#include "TextTile.h"
 #include "Object.h"
+#include "ObjectType.h"
 #include <fstream>
 #include <iostream>
-using namespace std;
-TileMap::TileMap(): _height(0), _width(0)
+
+TileMap::TileMap()
+    : _width(0), _height(0)
 {
-    LoadMap("../Stage/Stage1.txt");
 }
 
 TileMap::~TileMap()
 {
-    for (int i = 0; i < _height; ++i)
+    clearTiles();
+}
+
+void TileMap::clearTiles()
+{
+    for (auto& row : _tiles)
     {
-        for (int j = 0; j < _width; ++j)
+        for (auto& tile : row)
         {
-            delete _tileMap[i][j];
+            delete tile;
         }
     }
+    _tiles.clear();
 }
 
-TileBase* TileMap::GetTile(const Position& pos) const
+void TileMap::LoadMap(const std::string& filepath)
 {
-    if (!isInside(pos)) {return nullptr;}
-    return _tileMap[pos.s_y][pos.s_x];
-}
+    clearTiles();
 
-void TileMap::SetTile(const Position& pos, TileBase* tile)
-{
-    if (isInside(pos)) 
-    {
-        _tileMap[pos.s_y][pos.s_x] = tile;
-    }
-}
-
-void TileMap::LoadMap(const string& filemap)
-{
-    std::ifstream file(filemap);
+    std::ifstream file(filepath);
     if (!file.is_open())
     {
-        cout << "파일 열기 실패" << endl;
+        std::cout << "파일 열기 실패: " << filepath << std::endl;
         return;
     }
 
     file >> _width >> _height;
     file.ignore();
 
-    _tileMap.resize(_height, vector<TileBase*>(_width, nullptr));
+    _tiles.resize(_height, std::vector<TileBase*>(_width, nullptr));
 
     for (int i = 0; i < _height; ++i)
     {
-        string line;
-        getline(file, line);
+        std::string line;
+        std::getline(file, line);
 
         for (int j = 0; j < _width; ++j)
         {
-            TileBase* tile = new TileBase();
-            _tileMap[i][j] = tile;
-
             if (j < line.length())
             {
-                char ch = line[j];
-                ObjectType objType = ConvertCharToObjectType(ch);
-
-                Position pos(j, i);
-                tile->SetType(TileType::EMPTY);
-
-                if (objType != ObjectType::NONE)
-                {
-                    Object* obj = new Object(objType, pos);
-                    tile->AddObject(obj);
-                }
+                _tiles[i][j] = createTileFromChar(line[j], Position(j, i));
+            }
+            else
+            {
+                _tiles[i][j] = new ObjectTile(Position(j, i)); // 기본 타일
             }
         }
     }
@@ -80,58 +66,83 @@ void TileMap::LoadMap(const string& filemap)
     file.close();
 }
 
-ObjectType TileMap::GetObjectTile(TileBase* tile)
+TileBase* TileMap::createTileFromChar(char ch, const Position& pos)
 {
-    const auto& objs = tile->GetObjects();
-    if (!objs.empty())
-        return objs.back()->GetType();
-    return ObjectType::NONE;
-}
+    ObjectType type = ObjectType::NONE;
 
-ObjectType TileMap::ConvertCharToObjectType(char ch)
-{
     switch (ch)
     {
-    case '.': return ObjectType::NONE;
-    case 'W': return ObjectType::WALL;
-    case 'B': return ObjectType::BABA;
-    case 'F': return ObjectType::FLAG;
-    case 'R': return ObjectType::ROCK;
-    case 'b': return ObjectType::TEXT_BABA;
-    case 'r': return ObjectType::TEXT_ROCK;
-    case 'w': return ObjectType::TEXT_WIN;
-    case 'y': return ObjectType::TEXT_YOU;
-    case 'p': return ObjectType::TEXT_PUSH;
-    case 's': return ObjectType::TEXT_STOP;
-    case 'i': return ObjectType::TEXT_IS;
-    case 'f': return ObjectType::TEXT_FLAG;
-    default:  return ObjectType::NONE;
+    case '.': type = ObjectType::NONE; break;
+    case 'W': type = ObjectType::WALL; break;
+    case 'B': type = ObjectType::BABA; break;
+    case 'F': type = ObjectType::FLAG; break;
+    case 'R': type = ObjectType::ROCK; break;
+    case 'b': type = ObjectType::TEXT_BABA; break;
+    case 'r': type = ObjectType::TEXT_ROCK; break;
+    case 'w': type = ObjectType::TEXT_WIN; break;
+    case 'y': type = ObjectType::TEXT_YOU; break;
+    case 'p': type = ObjectType::TEXT_PUSH; break;
+    case 's': type = ObjectType::TEXT_STOP; break;
+    case 'i': type = ObjectType::TEXT_IS; break;
+    case 'f': type = ObjectType::TEXT_FLAG; break;
+    default:  type = ObjectType::NONE; break;
+    }
+
+    if (type == ObjectType::TEXT_BABA || type == ObjectType::TEXT_FLAG ||
+        type == ObjectType::TEXT_ROCK || type == ObjectType::TEXT_WIN ||
+        type == ObjectType::TEXT_PUSH || type == ObjectType::TEXT_STOP ||
+        type == ObjectType::TEXT_IS || type == ObjectType::TEXT_YOU)
+    {
+        return new TextTile(pos, type);
+    }
+    else
+    {
+        ObjectTile* tile = new ObjectTile(pos);
+        if (type != ObjectType::NONE)
+        {
+            Object* obj = new Object(type, pos);
+            tile->AddObject(obj);
+        }
+        return tile;
     }
 }
 
-void TileMap::RenderMap()
+TileBase* TileMap::GetTile(const Position& pos)
 {
-    for (int i = 0; i < _height; ++i)
+    if (!isInside(pos)) return nullptr;
+    return _tiles[pos.s_y][pos.s_x];
+}
+
+void TileMap::SetTile(const Position& pos, TileBase* tile)
+{
+    if (isInside(pos))
     {
-        for (int j = 0; j < _width; ++j)
+        delete _tiles[pos.s_y][pos.s_x];
+        _tiles[pos.s_y][pos.s_x] = tile;
+    }
+}
+
+void TileMap::RenderMap() const
+{
+    for (const auto& row : _tiles)
+    {
+        for (const auto& tile : row)
         {
-            if (_tileMap[i][j])
-                _tileMap[i][j]->Render();
+            if (tile)
+                tile->Render();
         }
         std::cout << std::endl;
     }
 }
 
-Position TileMap::FindObject(ObjectType target)
+Position TileMap::FindObject(ObjectType type) const
 {
     for (int y = 0; y < _height; ++y)
     {
         for (int x = 0; x < _width; ++x)
         {
-            if (_tileMap[y][x] && _tileMap[y][x]->HasObjectType(target))
-            {
+            if (_tiles[y][x] && _tiles[y][x]->HasObjectType(type))
                 return Position(x, y);
-            }
         }
     }
     return Position(-1, -1);
