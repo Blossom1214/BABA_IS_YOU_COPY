@@ -1,47 +1,36 @@
-#pragma once
+ï»¿#pragma once
+
 #include <vector>
 #include <string>
-#include <iostream>
-#include <fstream>
-struct Position;
+#include "Position.h"
+
 class TileBase;
 class Object;
 
 enum class TileType;
 enum class ObjectType;
+
 class TileMap
 {
 public:
-	TileMap();
-	~TileMap();
+    TileMap();
+    ~TileMap();
+
 public:
-	TileBase* GetTile(const Position& pos)const;//ÇØ´ç Å¸ÀÏ À§Ä¡ ¹İÈ¯
-	void SetTile(Position pos, TileBase* tile);//ÇØ´ç À§Ä¡ÀÇ Å¸ÀÏÀ» ´Ù¸¥ Å¸ÀÔÀÇ Å¸ÀÏ·Î º¯È¯ÇÏ´Â ÇÔ¼ö
-	void LoadMap(const std::string& filemap);
-	ObjectType GetObjectTile(TileBase* tile);
+    TileBase* GetTile(const Position& pos) const;
+    void SetTile(const Position& pos, TileBase* tile);
+    void LoadMap(const std::string& filemap);
+    ObjectType GetObjectTile(TileBase* tile);
+    ObjectType ConvertCharToObjectType(char ch);
+    void RenderMap();
+    Position FindObject(ObjectType target);
+    bool isInside(const Position& pos) const;
 
+    int GetHeight() const { return _height; }
+    int GetWidth() const { return _width; }
 
-	//TileType ConvertCharToTileType(char ch);
-	ObjectType ConvertCharToObjectType(char ch);
-
-
-	void RenderMap();
-	Position FindObject(ObjectType target);
-	bool isInside(const Position& pos) const;
-
-	//Å¸ÀÏ¸Ê ¹ÛÀ¸·Î ³ª°¡Áö ¸øÇÏ°Ô ¸·±âÀ§ÇÑ ÇÔ¼ö
-	int GetHeight()const { return _height; }
-	int GetWidth()const { return _width; }
-	
 private:
-	int _height;
-	int _width;
-	std::vector<std::vector<TileBase*>>* _tileMap;
-	//Å¸ÀÏ º£ÀÌ½º(Ãß»óÅ¬·¡½º)¿¡¼­ ´ÙÇü¼ºÀ» »ç¿ëÇØ¼­ ÇØ´ç ºÎ¸ğ¸¦ »ó¼Ó¹Ş´Â ÀÚ½Ä(Å¸ÀÏ)¿¡°Ô
-	//Áï ºÎ¸ğ¸¦ È£ÃâÇßÀ»¶§ µ¿Àû ¹ÙÀÎµùÀ¸·Î ÀÎÇØ¼­ ±×ÀÇ ÀÚ½Ä¿¡ ÇØ´çÇÏ´Â Å¸ÀÏÀ» ºÒ·¯¼­ »ç¿ëÇÒ¼öÀÖ°Ô ¸¸µé¾î ÁÖ°Ô µË´Ï´Ù...
-	//tilebase°¡ ´©±¸¸¦ °¡Á®¿Ã²¨¾ß?!!(Å¸ÀÏÀ» »ı¼ºÇÒ²¨ÀÓ...) _tilemapÀ» »ı¼ºÇÒ¶§ tilebase°¡ °¡¸£Å°´Â°Ç ÀÚ½Ä°´Ã¼ÀÎ
-	//Å¸ÀÏÀ» µ¿ÀûÇÒ´çÇØ¼­ »ı¼ºÇÏ°ÔµÇ´Âµ¥
-	//±×Å¸ÀÏÀÇ ÇÔ¼ö¸¦ ºÎ¸ğÅ¬·¡½º¿¡¼­È£ÃâÇÏ¸é ÇØ´ç Å¬·¡½º¿¡¼­´Â Ã£À»¼ö¾øÀ½..(¾ÖÃÊ¿¡ vfptr·Î Ã£¾Æ°¡±â¶§¹®¿¡ »ç½Ç »ı¼ºÀÌ ¾ÈµÇ¾îÀÖ¾î¾ß¸¸ ºÎ¸ğ¸¦ Ã£¾Æ°¨)
-	//(Áö±İÀº Å¸ÀÏ¸¸ ÀÖÀ½)
+    int _height;
+    int _width;
+    std::vector<std::vector<TileBase*>> _tileMap; // â— í¬ì¸í„° ì œê±°
 };
-
