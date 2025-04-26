@@ -1,31 +1,35 @@
 #include "Grammer.h"
+#include "Tile.h"
+#include "ObjectToTextTile.h"
+#include "VerbToTextTile.h"
+#include "StateToTextTile.h"
 #include "TileMap.h"
-#include "TextTile.h"
-#include "Movement.h"
-#include "Position.h"
-bool Grammer::CheckQuadPosition(TileMap* map, const Position& pos)
-{
-    //텍스트타일인지 아닌지를 알려면 해당위치의 타일이 텍스트타일인지부터!
-    map->GetTile(pos)->GetObjects();//현재 타일맵의 내가 탐색한 위치에있는...것이 오브젝트를 가졌을때 text타일타입인가요?! 라고 물어보는것
-
-    return false;
-}
-bool Grammer::IsText()
+bool Grammer::IsText(Tile* tile)
 {
 	return ObjectRole(_type) == ObjectRole::TEXT;
 }
 
-bool Grammer::IsNoun()
+bool Grammer::IsNoun(Tile* tile)
 {
 	return ObjectRole(_type) == ObjectRole::NOUN;
 }
 
-bool Grammer::IsVerb()
+bool Grammer::IsVerb(Tile* tile)
 {
 	return ObjectRole(_type) == ObjectRole::VERB;
 }
 
-bool Grammer::IsProperty()
+bool Grammer::IsProperty(Tile* tile)
 {
 	return ObjectRole(_type) == ObjectRole::PROPERTY;
+}
+
+bool Grammer::CheckHorizontalText(TileMap* map, const Position& pos)
+{
+	return false;
+}
+
+bool Grammer::CheckVerticalText(TileMap* map, const Position& pos)
+{
+	return false;
 }
