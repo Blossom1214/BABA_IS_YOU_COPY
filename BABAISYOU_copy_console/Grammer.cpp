@@ -4,6 +4,7 @@
 #include "VerbToTextTile.h"
 #include "StateToTextTile.h"
 #include "TileMap.h"
+#include "Movement.h"
 bool Grammer::IsText(TileBase* tile)
 {
 	return dynamic_cast<TextTile*>(tile) != nullptr;
@@ -66,13 +67,36 @@ bool Grammer::IsProperty(TileBase* tile)
 bool Grammer::CheckHorizontalText(TileMap* map, const Position& pos)
 {
 	TileBase*tile = map->GetTile(pos);
-	if (!IsText(tile))
+	if (!tile||!IsText(tile))//둘중하나라도 거짓이라면 아래 코드로 반환..
 	{
 		return false;
 	}
+    
+    TileBase* leftTile = map->GetTile(pos + Movement::Vector(Direction::LEFT));
+    TileBase* rightTile = map->GetTile(pos + Movement::Vector(Direction::RIGHT));
+
+    if (leftTile && IsText(leftTile) && rightTile && IsText(rightTile))
+    {
+        return true;
+    }
+    return false;
 }
 
 bool Grammer::CheckVerticalText(TileMap* map, const Position& pos)
 {
-	return false;
+    TileBase* tile = map->GetTile(pos);
+    if (!tile || !IsText(tile))//둘중하나라도 거짓이라면 아래 코드로 반환..
+    {
+        return false;
+    }
+
+    TileBase* upTile = map->GetTile(pos + Movement::Vector(Direction::UP));
+    TileBase* downTile = map->GetTile(pos + Movement::Vector(Direction::DOWN));
+
+    if (upTile && IsText(upTile) && downTile && IsText(downTile))
+    {
+        return true;
+    }
+    return false;
+	
 }
